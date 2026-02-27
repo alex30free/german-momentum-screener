@@ -54,37 +54,58 @@ W_3M  = 0.25
 def get_german_tickers():
     """
     Returns a deduplicated list of (company_name, yahoo_ticker) tuples
-    covering DAX + MDAX + SDAX. Uses pytickersymbols which always
-    reflects the current index composition.
+    covering DAX + MDAX + SDAX.
+
+    pytickersymbols stores multiple Yahoo symbols per stock — a Frankfurt
+    EUR ticker (ending .F or .DE) plus OTC USD tickers (e.g. DLAKY).
+    We must pick the EUR Frankfurt ticker only, otherwise yfinance returns
+    USD-denominated prices from OTC markets and the RSL / momentum calcs
+    are wrong. The dedicated get_*_frankfurt_yahoo_tickers() methods return
+    exactly these .F tickers, but don't give us company names. So we combine:
+      1. Use get_stocks_by_index() to get names + all symbols
+      2. For each stock, pick the first EUR symbol (currency == EUR)
+         that ends in .F or .DE — that's the Xetra ticker yfinance knows.
     """
-    pts   = PyTickerSymbols()
-    seen  = set()
+    pts     = PyTickerSymbols()
+    seen    = set()
     tickers = []
 
     for index_name in ['DAX', 'MDAX', 'SDAX']:
         stocks = list(pts.get_stocks_by_index(index_name))
         for stock in stocks:
-            name = stock.get('name', 'Unknown')
-            yahoo_symbols = stock.get('symbols', [])
-            # Find the Yahoo Finance symbol
+            name         = stock.get('name', 'Unknown')
+            symbol_list  = stock.get('symbols', [])
+
             yahoo_ticker = None
-            for sym_entry in yahoo_symbols:
-                if isinstance(sym_entry, dict):
-                    for key, val in sym_entry.items():
-                        if 'yahoo' in key.lower() or val.endswith('.DE') or val.endswith('.F'):
-                            yahoo_ticker = val
-                            break
-                elif isinstance(sym_entry, str) and ('.DE' in sym_entry or '.F' in sym_entry):
-                    yahoo_ticker = sym_entry
+
+            # Pass 1: prefer EUR-denominated Frankfurt ticker (.F or .DE)
+            for sym_entry in symbol_list:
+                if not isinstance(sym_entry, dict):
+                    continue
+                ticker   = sym_entry.get('yahoo', '')
+                currency = sym_entry.get('currency', '')
+                if currency == 'EUR' and (ticker.endswith('.F') or ticker.endswith('.DE')):
+                    yahoo_ticker = ticker
                     break
 
-            # Fallback: try the first symbol entry
-            if not yahoo_ticker and yahoo_symbols:
-                entry = yahoo_symbols[0]
-                if isinstance(entry, dict):
-                    yahoo_ticker = list(entry.values())[0] if entry else None
-                elif isinstance(entry, str):
-                    yahoo_ticker = entry
+            # Pass 2: any .F or .DE ticker (currency field sometimes missing)
+            if not yahoo_ticker:
+                for sym_entry in symbol_list:
+                    if not isinstance(sym_entry, dict):
+                        continue
+                    ticker = sym_entry.get('yahoo', '')
+                    if ticker.endswith('.F') or ticker.endswith('.DE'):
+                        yahoo_ticker = ticker
+                        break
+
+            # Pass 3: any EUR ticker as last resort
+            if not yahoo_ticker:
+                for sym_entry in symbol_list:
+                    if not isinstance(sym_entry, dict):
+                        continue
+                    if sym_entry.get('currency') == 'EUR':
+                        yahoo_ticker = sym_entry.get('yahoo', '')
+                        break
 
             if yahoo_ticker and yahoo_ticker not in seen:
                 seen.add(yahoo_ticker)
@@ -130,7 +151,12 @@ def run_screener():
     # ── 1. Get tickers ────────────────────────────────────────────────────────
     print("\nFetching ticker universe from pytickersymbols...")
     tickers = get_german_tickers()
-    print(f"  → {len(tickers)} unique tickers loaded")
+    print(f"  → {len(tickers)} unique EUR/Frankfurt tickers loaded")
+    print("  Sample tickers: " + ", ".join(t for _, t in tickers[:10]))
+    if len(tickers) < 100:
+        print(f"  ⚠ WARNING: Expected ~150-170 tickers but only got {len(tickers)}.")
+        print("    pytickersymbols may have missing EUR symbols for some stocks.")
+    print()
 
     # ── 2. Download price history ─────────────────────────────────────────────
     end_date   = datetime.datetime.today()
