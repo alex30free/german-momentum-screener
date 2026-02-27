@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-27 17:03 UTC",
+  "updated": "2026-02-27 17:33 UTC",
   "date": "2026-02-27",
   "universe": "DAX + MDAX + SDAX",
   "total_screened": 68,
@@ -16,7 +16,7 @@
       "mom_3m": 52.05,
       "composite": 96.34,
       "rank": 1,
-      "prev_rank": null
+      "prev_rank": 1
     },
     {
       "name": "SMA Solar Technology",
@@ -28,7 +28,7 @@
       "mom_3m": 43.18,
       "composite": 95.97,
       "rank": 2,
-      "prev_rank": null
+      "prev_rank": 2
     },
     {
       "name": "Hochtief",
@@ -40,7 +40,7 @@
       "mom_3m": 37.33,
       "composite": 94.78,
       "rank": 3,
-      "prev_rank": null
+      "prev_rank": 3
     },
     {
       "name": "Klöckner & Co",
@@ -52,7 +52,7 @@
       "mom_3m": 94.01,
       "composite": 94.33,
       "rank": 4,
-      "prev_rank": null
+      "prev_rank": 4
     },
     {
       "name": "Aurubis",
@@ -64,7 +64,7 @@
       "mom_3m": 51.13,
       "composite": 93.51,
       "rank": 5,
-      "prev_rank": null
+      "prev_rank": 5
     },
     {
       "name": "Nordex SE",
@@ -76,7 +76,7 @@
       "mom_3m": 36.74,
       "composite": 93.51,
       "rank": 6,
-      "prev_rank": null
+      "prev_rank": 6
     },
     {
       "name": "Siemens Energy",
@@ -88,7 +88,7 @@
       "mom_3m": 41.61,
       "composite": 90.6,
       "rank": 7,
-      "prev_rank": null
+      "prev_rank": 7
     },
     {
       "name": "Bayer",
@@ -100,7 +100,7 @@
       "mom_3m": 59.38,
       "composite": 90.45,
       "rank": 8,
-      "prev_rank": null
+      "prev_rank": 8
     },
     {
       "name": "Bilfinger SE",
@@ -112,7 +112,7 @@
       "mom_3m": 22.63,
       "composite": 85.82,
       "rank": 9,
-      "prev_rank": null
+      "prev_rank": 9
     },
     {
       "name": "Deutz AG",
@@ -124,7 +124,7 @@
       "mom_3m": 23.86,
       "composite": 85.67,
       "rank": 10,
-      "prev_rank": null
+      "prev_rank": 10
     },
     {
       "name": "RWE",
@@ -136,7 +136,7 @@
       "mom_3m": 32.64,
       "composite": 84.85,
       "rank": 11,
-      "prev_rank": null
+      "prev_rank": 11
     },
     {
       "name": "Aixtron",
@@ -148,7 +148,7 @@
       "mom_3m": 46.27,
       "composite": 83.13,
       "rank": 12,
-      "prev_rank": null
+      "prev_rank": 12
     },
     {
       "name": "Indus Holding",
@@ -160,7 +160,7 @@
       "mom_3m": 39.08,
       "composite": 82.69,
       "rank": 13,
-      "prev_rank": null
+      "prev_rank": 13
     },
     {
       "name": "Lufthansa Group",
@@ -172,7 +172,7 @@
       "mom_3m": 26.14,
       "composite": 75.75,
       "rank": 14,
-      "prev_rank": null
+      "prev_rank": 14
     },
     {
       "name": "Drägerwerk",
@@ -184,7 +184,7 @@
       "mom_3m": 15.3,
       "composite": 74.48,
       "rank": 15,
-      "prev_rank": null
+      "prev_rank": 15
     },
     {
       "name": "Jost Werke",
@@ -196,7 +196,7 @@
       "mom_3m": 21.1,
       "composite": 73.06,
       "rank": 16,
-      "prev_rank": 14
+      "prev_rank": 16
     },
     {
       "name": "ThyssenKrupp",
@@ -208,7 +208,7 @@
       "mom_3m": 20.23,
       "composite": 72.01,
       "rank": 17,
-      "prev_rank": null
+      "prev_rank": 17
     },
     {
       "name": "Infineon Technologies",
@@ -220,7 +220,7 @@
       "mom_3m": 22.66,
       "composite": 71.72,
       "rank": 18,
-      "prev_rank": null
+      "prev_rank": 18
     },
     {
       "name": "Deutsche Post",
@@ -232,7 +232,7 @@
       "mom_3m": 18.03,
       "composite": 69.78,
       "rank": 19,
-      "prev_rank": null
+      "prev_rank": 19
     },
     {
       "name": "Knorr-Bremse",
@@ -244,7 +244,7 @@
       "mom_3m": 21.92,
       "composite": 68.21,
       "rank": 20,
-      "prev_rank": null
+      "prev_rank": 20
     }
   ],
   "skipped": [
