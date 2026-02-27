@@ -27,9 +27,8 @@ warnings.filterwarnings("ignore")
 try:
     import yfinance as yf
     import pandas as pd
-    from pytickersymbols import PyTickerSymbols
 except ImportError:
-    print("ERROR: Run: pip install yfinance pandas pytickersymbols")
+    print("ERROR: Run: pip install yfinance pandas")
     raise
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -50,68 +49,178 @@ W_12M = 0.40
 W_6M  = 0.35
 W_3M  = 0.25
 
-# ── Fetch tickers via pytickersymbols ─────────────────────────────────────────
+# ── Complete hardcoded ticker universe ────────────────────────────────────────
+# DAX (40) + MDAX (50) + SDAX (70) = 160 stocks
+# Source: Deutsche Börse / Wikipedia, Yahoo Finance .DE tickers (Xetra)
+# Last updated: 2025. Update symbols here if index composition changes.
+
+TICKERS = [
+    # ── DAX 40 ────────────────────────────────────────────────────────────────
+    ("Adidas",                  "ADS.DE"),
+    ("Airbus",                  "AIR.DE"),
+    ("Allianz",                 "ALV.DE"),
+    ("BASF",                    "BAS.DE"),
+    ("Bayer",                   "BAYN.DE"),
+    ("Beiersdorf",              "BEI.DE"),
+    ("BMW",                     "BMW.DE"),
+    ("Brenntag",                "BNR.DE"),
+    ("Commerzbank",             "CBK.DE"),
+    ("Continental",             "CON.DE"),
+    ("Covestro",                "1COV.DE"),
+    ("Daimler Truck",           "DTG.DE"),
+    ("Deutsche Bank",           "DBK.DE"),
+    ("Deutsche Börse",          "DB1.DE"),
+    ("Deutsche Post",           "DHL.DE"),
+    ("Deutsche Telekom",        "DTE.DE"),
+    ("E.ON",                    "EOAN.DE"),
+    ("Fresenius",               "FRE.DE"),
+    ("Hannover Rück",           "HNR1.DE"),
+    ("Heidelberg Materials",    "HEIG.DE"),
+    ("Henkel",                  "HNKG.DE"),
+    ("Infineon",                "IFX.DE"),
+    ("Mercedes-Benz",           "MBG.DE"),
+    ("Merck KGaA",              "MRK.DE"),
+    ("MTU Aero Engines",        "MTX.DE"),
+    ("Munich Re",               "MUV2.DE"),
+    ("Porsche AG",              "P911.DE"),
+    ("Porsche SE",              "PAH3.DE"),
+    ("Qiagen",                  "QIA.DE"),
+    ("Rheinmetall",             "RHM.DE"),
+    ("RWE",                     "RWE.DE"),
+    ("SAP",                     "SAP.DE"),
+    ("Sartorius",               "SRT3.DE"),
+    ("Siemens",                 "SIE.DE"),
+    ("Siemens Energy",          "ENR.DE"),
+    ("Siemens Healthineers",    "SHL.DE"),
+    ("Symrise",                 "SY1.DE"),
+    ("Volkswagen",              "VOW3.DE"),
+    ("Vonovia",                 "VNA.DE"),
+    ("Zalando",                 "ZAL.DE"),
+
+    # ── MDAX 50 ───────────────────────────────────────────────────────────────
+    ("Aixtron",                 "AIXA.DE"),
+    ("Aroundtown",              "AT1.DE"),
+    ("Aurubis",                 "NDA.DE"),
+    ("Bechtle",                 "BC8.DE"),
+    ("Befesa",                  "BFSA.DE"),
+    ("Bilfinger",               "GBF.DE"),
+    ("Carl Zeiss Meditec",      "AFX.DE"),
+    ("CTS Eventim",             "EVD.DE"),
+    ("Delivery Hero",           "DHER.DE"),
+    ("Deutsche Lufthansa",      "LHA.DE"),
+    ("Encavis",                 "ECV.DE"),
+    ("Evonik Industries",       "EVK.DE"),
+    ("Evotec",                  "EVT.DE"),
+    ("Fraport",                 "FRA.DE"),
+    ("Freenet",                 "FNTN.DE"),
+    ("Fresenius Medical Care",  "FME.DE"),
+    ("Fuchs Petrolub",          "FPE3.DE"),
+    ("GEA Group",               "G1A.DE"),
+    ("Gerresheimer",            "GXI.DE"),
+    ("Hella",                   "HLE.DE"),
+    ("HelloFresh",              "HFG.DE"),
+    ("Hensoldt",                "HAG.DE"),
+    ("Hochtief",                "HOT.DE"),
+    ("Hugo Boss",               "BOSS.DE"),
+    ("Jenoptik",                "JEN.DE"),
+    ("Jungheinrich",            "JUN3.DE"),
+    ("K+S",                     "SDF.DE"),
+    ("Kion Group",              "KGX.DE"),
+    ("Knorr-Bremse",            "KBX.DE"),
+    ("Krones",                  "KRN.DE"),
+    ("Lanxess",                 "LXS.DE"),
+    ("LEG Immobilien",          "LEG.DE"),
+    ("Nemetschek",              "NEM.DE"),
+    ("Nordex",                  "NDX1.DE"),
+    ("PUMA",                    "PUM.DE"),
+    ("Rational",                "RAA.DE"),
+    ("Redcare Pharmacy",        "RDC.DE"),
+    ("RTL Group",               "RRTL.DE"),
+    ("Scout24",                 "G24.DE"),
+    ("Siltronic",               "WAF.DE"),
+    ("Stabilus",                "STM.DE"),
+    ("Ströer",                  "SAX.DE"),
+    ("TAG Immobilien",          "TEG.DE"),
+    ("Talanx",                  "TLX.DE"),
+    ("TeamViewer",              "TMV.DE"),
+    ("Thyssenkrupp",            "TKA.DE"),
+    ("Traton",                  "8TRA.DE"),
+    ("TUI",                     "TUI1.DE"),
+    ("United Internet",         "UTDI.DE"),
+    ("Wacker Chemie",           "WCH.DE"),
+
+    # ── SDAX 70 ───────────────────────────────────────────────────────────────
+    ("1&1",                     "1U1.DE"),
+    ("Adesso",                  "ADS5.DE"),
+    ("Adtran Networks",         "ADTN.DE"),
+    ("Amadeus Fire",            "AAD.DE"),
+    ("Atoss Software",          "AOF.DE"),
+    ("Auto1 Group",             "AG1.DE"),
+    ("BayWa",                   "BYW6.DE"),
+    ("Borussia Dortmund",       "BVB.DE"),
+    ("Cancom",                  "COK.DE"),
+    ("Ceconomy",                "CEC.DE"),
+    ("Cewe Stiftung",           "CWC.DE"),
+    ("CompuGroup Medical",      "COP.DE"),
+    ("Dermapharm",              "DMP.DE"),
+    ("Deutsche Beteiligungs",   "DBAN.DE"),
+    ("Deutsche Pfandbriefbank", "PBB.DE"),
+    ("Deutsche Wohnen",         "DWNI.DE"),
+    ("Deutz",                   "DEZ.DE"),
+    ("Drägerwerk",              "DRW3.DE"),
+    ("Dürr",                    "DUE.DE"),
+    ("DWS Group",               "DWS.DE"),
+    ("Eckert & Ziegler",        "EUZ.DE"),
+    ("Elmos Semiconductor",     "ELG.DE"),
+    ("Energiekontor",           "EKT.DE"),
+    ("Fielmann",                "FIE.DE"),
+    ("Flatexdegiro",            "FTK.DE"),
+    ("GFT Technologies",        "GFT.DE"),
+    ("Grand City Properties",   "GYC.DE"),
+    ("Grenke",                  "GLJ.DE"),
+    ("Hamborner REIT",          "HABA.DE"),
+    ("Heidelberger Druck",      "HDD.DE"),
+    ("Hornbach Holding",        "HBH.DE"),
+    ("Hypoport",                "HYQ.DE"),
+    ("Indus Holding",           "INH.DE"),
+    ("Ionos Group",             "IOS.DE"),
+    ("Jost Werke",              "JST.DE"),
+    ("Klöckner & Co",           "KCO.DE"),
+    ("Kontron",                 "KTN.DE"),
+    ("KSB",                     "KSB.DE"),
+    ("KWS Saat",                "KWS.DE"),
+    ("Metro",                   "B4B3.DE"),
+    ("Mutares",                 "MUX.DE"),
+    ("Nagarro",                 "NA9.DE"),
+    ("Norma Group",             "NOEJ.DE"),
+    ("Patrizia",                "PAT.DE"),
+    ("Pfeiffer Vacuum",         "PFV.DE"),
+    ("PNE",                     "PNE3.DE"),
+    ("ProSiebenSat.1",          "PSM.DE"),
+    ("PVA TePla",               "TPE.DE"),
+    ("SAF-Holland",             "SFQ.DE"),
+    ("Salzgitter",              "SZG.DE"),
+    ("Schaeffler",              "SHA.DE"),
+    ("Schott Pharma",           "1SXP.DE"),
+    ("SFC Energy",              "F3C.DE"),
+    ("SGL Carbon",              "SGL.DE"),
+    ("Stratec",                 "SBS.DE"),
+    ("Südzucker",               "SZU.DE"),
+    ("Süss Microtec",           "SMHN.DE"),
+    ("Synlab",                  "SYAB.DE"),
+    ("Takkt",                   "TTK.DE"),
+    ("Thyssenkrupp Nucera",     "NCH2.DE"),
+    ("Varta",                   "VAR1.DE"),
+    ("Verbio",                  "VBK.DE"),
+    ("Vossloh",                 "VOS.DE"),
+    ("Wacker Neuson",           "WAC.DE"),
+    ("Wüstenrot & Württemb.",   "WUW.DE"),
+]
+
+
 def get_german_tickers():
-    """
-    Returns a deduplicated list of (company_name, yahoo_ticker) tuples
-    covering DAX + MDAX + SDAX.
-
-    pytickersymbols stores multiple Yahoo symbols per stock — a Frankfurt
-    EUR ticker (ending .F or .DE) plus OTC USD tickers (e.g. DLAKY).
-    We must pick the EUR Frankfurt ticker only, otherwise yfinance returns
-    USD-denominated prices from OTC markets and the RSL / momentum calcs
-    are wrong. The dedicated get_*_frankfurt_yahoo_tickers() methods return
-    exactly these .F tickers, but don't give us company names. So we combine:
-      1. Use get_stocks_by_index() to get names + all symbols
-      2. For each stock, pick the first EUR symbol (currency == EUR)
-         that ends in .F or .DE — that's the Xetra ticker yfinance knows.
-    """
-    pts     = PyTickerSymbols()
-    seen    = set()
-    tickers = []
-
-    for index_name in ['DAX', 'MDAX', 'SDAX']:
-        stocks = list(pts.get_stocks_by_index(index_name))
-        for stock in stocks:
-            name         = stock.get('name', 'Unknown')
-            symbol_list  = stock.get('symbols', [])
-
-            yahoo_ticker = None
-
-            # Pass 1: prefer EUR-denominated Frankfurt ticker (.F or .DE)
-            for sym_entry in symbol_list:
-                if not isinstance(sym_entry, dict):
-                    continue
-                ticker   = sym_entry.get('yahoo', '')
-                currency = sym_entry.get('currency', '')
-                if currency == 'EUR' and (ticker.endswith('.F') or ticker.endswith('.DE')):
-                    yahoo_ticker = ticker
-                    break
-
-            # Pass 2: any .F or .DE ticker (currency field sometimes missing)
-            if not yahoo_ticker:
-                for sym_entry in symbol_list:
-                    if not isinstance(sym_entry, dict):
-                        continue
-                    ticker = sym_entry.get('yahoo', '')
-                    if ticker.endswith('.F') or ticker.endswith('.DE'):
-                        yahoo_ticker = ticker
-                        break
-
-            # Pass 3: any EUR ticker as last resort
-            if not yahoo_ticker:
-                for sym_entry in symbol_list:
-                    if not isinstance(sym_entry, dict):
-                        continue
-                    if sym_entry.get('currency') == 'EUR':
-                        yahoo_ticker = sym_entry.get('yahoo', '')
-                        break
-
-            if yahoo_ticker and yahoo_ticker not in seen:
-                seen.add(yahoo_ticker)
-                tickers.append((name, yahoo_ticker))
-
-    return tickers
+    """Returns the hardcoded list of (name, yahoo_ticker) tuples."""
+    return TICKERS
 
 
 # ── Momentum helpers ──────────────────────────────────────────────────────────
@@ -149,14 +258,8 @@ def run_screener():
     print("=" * 65)
 
     # ── 1. Get tickers ────────────────────────────────────────────────────────
-    print("\nFetching ticker universe from pytickersymbols...")
     tickers = get_german_tickers()
-    print(f"  → {len(tickers)} unique EUR/Frankfurt tickers loaded")
-    print("  Sample tickers: " + ", ".join(t for _, t in tickers[:10]))
-    if len(tickers) < 100:
-        print(f"  ⚠ WARNING: Expected ~150-170 tickers but only got {len(tickers)}.")
-        print("    pytickersymbols may have missing EUR symbols for some stocks.")
-    print()
+    print(f"\n  Universe: {len(tickers)} stocks (DAX 40 + MDAX 50 + SDAX 70)\n")
 
     # ── 2. Download price history ─────────────────────────────────────────────
     end_date   = datetime.datetime.today()
