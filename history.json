@@ -1,1 +1,227 @@
-[]
+[
+  {
+    "date": "2026-02-27",
+    "stocks": [
+      {
+        "ticker": "HOCFF",
+        "name": "Hochtief",
+        "rank": 1,
+        "composite": 96.42,
+        "rsl": 1.3551,
+        "mom_12m": 211.35,
+        "mom_6m": 95.82,
+        "mom_3m": 45.02,
+        "price": 473.45
+      },
+      {
+        "ticker": "S93.F",
+        "name": "SMA Solar Technology",
+        "rank": 2,
+        "composite": 95.97,
+        "rsl": 1.1283,
+        "mom_12m": 184.62,
+        "mom_6m": 83.17,
+        "mom_3m": 65.18,
+        "price": 3.18
+      },
+      {
+        "ticker": "NRXXY",
+        "name": "Nordex SE",
+        "rank": 3,
+        "composite": 95.52,
+        "rsl": 1.3625,
+        "mom_12m": 233.33,
+        "mom_6m": 51.64,
+        "mom_3m": 60.52,
+        "price": 20.4
+      },
+      {
+        "ticker": "TKA1.F",
+        "name": "ThyssenKrupp",
+        "rank": 4,
+        "composite": 95.3,
+        "rsl": 1.1986,
+        "mom_12m": 288.24,
+        "mom_6m": 69.83,
+        "mom_3m": 40.83,
+        "price": 10.5
+      },
+      {
+        "ticker": "SZGA.F",
+        "name": "Salzgitter AG",
+        "rank": 5,
+        "composite": 93.58,
+        "rsl": 1.5345,
+        "mom_12m": 149.05,
+        "mom_6m": 100.0,
+        "mom_3m": 42.5,
+        "price": 5.3
+      },
+      {
+        "ticker": "0K7F.L",
+        "name": "Aurubis",
+        "rank": 6,
+        "composite": 92.54,
+        "rsl": 1.3787,
+        "mom_12m": 128.08,
+        "mom_6m": 82.63,
+        "mom_3m": 47.61,
+        "price": 168.5
+      },
+      {
+        "ticker": "0SEA.L",
+        "name": "Siemens Energy",
+        "rank": 7,
+        "composite": 91.57,
+        "rsl": 1.4027,
+        "mom_12m": 194.2,
+        "mom_6m": 46.85,
+        "mom_3m": 38.72,
+        "price": 164.1
+      },
+      {
+        "ticker": "BAYA.F",
+        "name": "Bayer",
+        "rank": 8,
+        "composite": 91.04,
+        "rsl": 1.3112,
+        "mom_12m": 103.0,
+        "mom_6m": 57.66,
+        "mom_3m": 62.41,
+        "price": 10.9
+      },
+      {
+        "ticker": "DEUZF",
+        "name": "Deutz AG",
+        "rank": 9,
+        "composite": 86.19,
+        "rsl": 1.1537,
+        "mom_12m": 189.7,
+        "mom_6m": 32.56,
+        "mom_3m": 18.14,
+        "price": 12.05
+      },
+      {
+        "ticker": "RWEA.F",
+        "name": "RWE",
+        "rank": 10,
+        "composite": 84.7,
+        "rsl": 1.2349,
+        "mom_12m": 81.22,
+        "mom_6m": 44.44,
+        "mom_3m": 28.71,
+        "price": 53.5
+      },
+      {
+        "ticker": "0NP9.L",
+        "name": "Aixtron",
+        "rank": 11,
+        "composite": 82.09,
+        "rsl": 1.4782,
+        "mom_12m": 51.11,
+        "mom_6m": 27.19,
+        "mom_3m": 47.05,
+        "price": 25.04
+      },
+      {
+        "ticker": "BFLBF",
+        "name": "Bilfinger SE",
+        "rank": 12,
+        "composite": 81.87,
+        "rsl": 1.1959,
+        "mom_12m": 182.9,
+        "mom_6m": 30.11,
+        "mom_3m": 15.32,
+        "price": 143.44
+      },
+      {
+        "ticker": "DB",
+        "name": "Deutsche Bank",
+        "rank": 13,
+        "composite": 76.72,
+        "rsl": 1.0024,
+        "mom_12m": 102.67,
+        "mom_6m": 19.49,
+        "mom_3m": 16.5,
+        "price": 36.72
+      },
+      {
+        "ticker": "JST.F",
+        "name": "Jost Werke",
+        "rank": 14,
+        "composite": 75.6,
+        "rsl": 1.1855,
+        "mom_12m": 43.02,
+        "mom_6m": 22.5,
+        "mom_3m": 21.1,
+        "price": 64.5
+      },
+      {
+        "ticker": "DHL.F",
+        "name": "Deutsche Post",
+        "rank": 15,
+        "composite": 72.31,
+        "rsl": 1.1442,
+        "mom_12m": 40.81,
+        "mom_6m": 18.66,
+        "mom_3m": 18.27,
+        "price": 49.73
+      },
+      {
+        "ticker": "LHAB.F",
+        "name": "Lufthansa Group",
+        "rank": 16,
+        "composite": 72.09,
+        "rsl": 1.1702,
+        "mom_12m": 40.3,
+        "mom_6m": 15.75,
+        "mom_3m": 21.58,
+        "price": 9.4
+      },
+      {
+        "ticker": "0KED.L",
+        "name": "Infineon Technologies",
+        "rank": 17,
+        "composite": 71.79,
+        "rsl": 1.2964,
+        "mom_12m": 31.02,
+        "mom_6m": 20.93,
+        "mom_3m": 26.55,
+        "price": 47.37
+      },
+      {
+        "ticker": "DGWPF",
+        "name": "Drägerwerk",
+        "rank": 18,
+        "composite": 70.97,
+        "rsl": 1.0822,
+        "mom_12m": 67.13,
+        "mom_6m": 26.32,
+        "mom_3m": 7.24,
+        "price": 72.0
+      },
+      {
+        "ticker": "EOAA.F",
+        "name": "E.ON",
+        "rank": 19,
+        "composite": 70.6,
+        "rsl": 1.2142,
+        "mom_12m": 72.24,
+        "mom_6m": 15.38,
+        "mom_3m": 13.92,
+        "price": 19.6
+      },
+      {
+        "ticker": "ZZMS.F",
+        "name": "Commerzbank",
+        "rank": 20,
+        "composite": 69.25,
+        "rsl": 1.063,
+        "mom_12m": 94.8,
+        "mom_6m": 11.61,
+        "mom_3m": 15.33,
+        "price": 35.2
+      }
+    ]
+  }
+]

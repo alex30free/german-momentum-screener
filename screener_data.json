@@ -1,0 +1,318 @@
+{
+  "updated": "2026-02-27 16:51 UTC",
+  "date": "2026-02-27",
+  "universe": "DAX + MDAX + SDAX",
+  "total_screened": 68,
+  "total_attempted": 126,
+  "skipped_count": 11,
+  "top20": [
+    {
+      "name": "Hochtief",
+      "ticker": "HOCFF",
+      "price": 473.45,
+      "rsl": 1.3551,
+      "mom_12m": 211.35,
+      "mom_6m": 95.82,
+      "mom_3m": 45.02,
+      "composite": 96.42,
+      "rank": 1,
+      "prev_rank": null
+    },
+    {
+      "name": "SMA Solar Technology",
+      "ticker": "S93.F",
+      "price": 3.18,
+      "rsl": 1.1283,
+      "mom_12m": 184.62,
+      "mom_6m": 83.17,
+      "mom_3m": 65.18,
+      "composite": 95.97,
+      "rank": 2,
+      "prev_rank": null
+    },
+    {
+      "name": "Nordex SE",
+      "ticker": "NRXXY",
+      "price": 20.4,
+      "rsl": 1.3625,
+      "mom_12m": 233.33,
+      "mom_6m": 51.64,
+      "mom_3m": 60.52,
+      "composite": 95.52,
+      "rank": 3,
+      "prev_rank": null
+    },
+    {
+      "name": "ThyssenKrupp",
+      "ticker": "TKA1.F",
+      "price": 10.5,
+      "rsl": 1.1986,
+      "mom_12m": 288.24,
+      "mom_6m": 69.83,
+      "mom_3m": 40.83,
+      "composite": 95.3,
+      "rank": 4,
+      "prev_rank": null
+    },
+    {
+      "name": "Salzgitter AG",
+      "ticker": "SZGA.F",
+      "price": 5.3,
+      "rsl": 1.5345,
+      "mom_12m": 149.05,
+      "mom_6m": 100.0,
+      "mom_3m": 42.5,
+      "composite": 93.58,
+      "rank": 5,
+      "prev_rank": null
+    },
+    {
+      "name": "Aurubis",
+      "ticker": "0K7F.L",
+      "price": 168.5,
+      "rsl": 1.3787,
+      "mom_12m": 128.08,
+      "mom_6m": 82.63,
+      "mom_3m": 47.61,
+      "composite": 92.54,
+      "rank": 6,
+      "prev_rank": null
+    },
+    {
+      "name": "Siemens Energy",
+      "ticker": "0SEA.L",
+      "price": 164.1,
+      "rsl": 1.4027,
+      "mom_12m": 194.2,
+      "mom_6m": 46.85,
+      "mom_3m": 38.72,
+      "composite": 91.57,
+      "rank": 7,
+      "prev_rank": null
+    },
+    {
+      "name": "Bayer",
+      "ticker": "BAYA.F",
+      "price": 10.9,
+      "rsl": 1.3112,
+      "mom_12m": 103.0,
+      "mom_6m": 57.66,
+      "mom_3m": 62.41,
+      "composite": 91.04,
+      "rank": 8,
+      "prev_rank": null
+    },
+    {
+      "name": "Deutz AG",
+      "ticker": "DEUZF",
+      "price": 12.05,
+      "rsl": 1.1537,
+      "mom_12m": 189.7,
+      "mom_6m": 32.56,
+      "mom_3m": 18.14,
+      "composite": 86.19,
+      "rank": 9,
+      "prev_rank": null
+    },
+    {
+      "name": "RWE",
+      "ticker": "RWEA.F",
+      "price": 53.5,
+      "rsl": 1.2349,
+      "mom_12m": 81.22,
+      "mom_6m": 44.44,
+      "mom_3m": 28.71,
+      "composite": 84.7,
+      "rank": 10,
+      "prev_rank": null
+    },
+    {
+      "name": "Aixtron",
+      "ticker": "0NP9.L",
+      "price": 25.04,
+      "rsl": 1.4782,
+      "mom_12m": 51.11,
+      "mom_6m": 27.19,
+      "mom_3m": 47.05,
+      "composite": 82.09,
+      "rank": 11,
+      "prev_rank": null
+    },
+    {
+      "name": "Bilfinger SE",
+      "ticker": "BFLBF",
+      "price": 143.44,
+      "rsl": 1.1959,
+      "mom_12m": 182.9,
+      "mom_6m": 30.11,
+      "mom_3m": 15.32,
+      "composite": 81.87,
+      "rank": 12,
+      "prev_rank": null
+    },
+    {
+      "name": "Deutsche Bank",
+      "ticker": "DB",
+      "price": 36.72,
+      "rsl": 1.0024,
+      "mom_12m": 102.67,
+      "mom_6m": 19.49,
+      "mom_3m": 16.5,
+      "composite": 76.72,
+      "rank": 13,
+      "prev_rank": null
+    },
+    {
+      "name": "Jost Werke",
+      "ticker": "JST.F",
+      "price": 64.5,
+      "rsl": 1.1855,
+      "mom_12m": 43.02,
+      "mom_6m": 22.5,
+      "mom_3m": 21.1,
+      "composite": 75.6,
+      "rank": 14,
+      "prev_rank": null
+    },
+    {
+      "name": "Deutsche Post",
+      "ticker": "DHL.F",
+      "price": 49.73,
+      "rsl": 1.1442,
+      "mom_12m": 40.81,
+      "mom_6m": 18.66,
+      "mom_3m": 18.27,
+      "composite": 72.31,
+      "rank": 15,
+      "prev_rank": null
+    },
+    {
+      "name": "Lufthansa Group",
+      "ticker": "LHAB.F",
+      "price": 9.4,
+      "rsl": 1.1702,
+      "mom_12m": 40.3,
+      "mom_6m": 15.75,
+      "mom_3m": 21.58,
+      "composite": 72.09,
+      "rank": 16,
+      "prev_rank": null
+    },
+    {
+      "name": "Infineon Technologies",
+      "ticker": "0KED.L",
+      "price": 47.37,
+      "rsl": 1.2964,
+      "mom_12m": 31.02,
+      "mom_6m": 20.93,
+      "mom_3m": 26.55,
+      "composite": 71.79,
+      "rank": 17,
+      "prev_rank": null
+    },
+    {
+      "name": "Drägerwerk",
+      "ticker": "DGWPF",
+      "price": 72.0,
+      "rsl": 1.0822,
+      "mom_12m": 67.13,
+      "mom_6m": 26.32,
+      "mom_3m": 7.24,
+      "composite": 70.97,
+      "rank": 18,
+      "prev_rank": null
+    },
+    {
+      "name": "E.ON",
+      "ticker": "EOAA.F",
+      "price": 19.6,
+      "rsl": 1.2142,
+      "mom_12m": 72.24,
+      "mom_6m": 15.38,
+      "mom_3m": 13.92,
+      "composite": 70.6,
+      "rank": 19,
+      "prev_rank": null
+    },
+    {
+      "name": "Commerzbank",
+      "ticker": "ZZMS.F",
+      "price": 35.2,
+      "rsl": 1.063,
+      "mom_12m": 94.8,
+      "mom_6m": 11.61,
+      "mom_3m": 15.33,
+      "composite": 69.25,
+      "rank": 20,
+      "prev_rank": null
+    }
+  ],
+  "skipped": [
+    {
+      "name": "Brenntag",
+      "ticker": "BNRN.F",
+      "reason": "Insufficient data",
+      "days": 0
+    },
+    {
+      "name": "Deutsche Telekom",
+      "ticker": "RTKM.ME",
+      "reason": "Insufficient data",
+      "days": 0
+    },
+    {
+      "name": "HeidelbergCement",
+      "ticker": "HEIU.F",
+      "reason": "Insufficient data",
+      "days": 0
+    },
+    {
+      "name": "Befesa",
+      "ticker": "BFSA.MC",
+      "reason": "Insufficient data",
+      "days": 0
+    },
+    {
+      "name": "Encavis",
+      "ticker": "DE0006095003.F",
+      "reason": "Insufficient data",
+      "days": 0
+    },
+    {
+      "name": "Siltronic",
+      "ticker": "WAF1.F",
+      "reason": "Insufficient data",
+      "days": 0
+    },
+    {
+      "name": "Amadeus FiRe AG",
+      "ticker": "0DK9.L",
+      "reason": "Insufficient data",
+      "days": 0
+    },
+    {
+      "name": "Hamborner",
+      "ticker": "0MCG.L",
+      "reason": "Insufficient data",
+      "days": 27
+    },
+    {
+      "name": "Klöckner & Co",
+      "ticker": "KCOV.F",
+      "reason": "Insufficient data",
+      "days": 0
+    },
+    {
+      "name": "Schaeffler Group",
+      "ticker": "SHAU.F",
+      "reason": "Insufficient history (142 days)",
+      "days": 142
+    },
+    {
+      "name": "Sto",
+      "ticker": "0G5B.L",
+      "reason": "Insufficient history (272 days)",
+      "days": 272
+    }
+  ]
+}
