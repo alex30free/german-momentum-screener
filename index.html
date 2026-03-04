@@ -386,6 +386,9 @@
       display: none;
     }
 
+    .td-fscore.visible, .td-mcap.visible { display: table-cell !important; }
+    .th-fscore.visible, .th-cap.visible  { display: table-cell !important; }
+
     tbody tr {
       border-bottom: 1px solid var(--border);
       transition: background 0.15s;
@@ -908,61 +911,36 @@ function render(data) {
 }
 
 function renderTable(stocks) {
-  const showSize   = document.getElementById('toggle-size').checked;
-  const showFscore = document.getElementById('toggle-fscore').checked;
-  const minCap     = showSize   ? parseInt(document.getElementById('slider-size').value)   : 0;
-  const minFscore  = showFscore ? parseInt(document.getElementById('slider-fscore').value) : 0;
-
-  // Show/hide columns
-  document.querySelectorAll('.col-cap-data, .th-cap').forEach(el =>
-    el.style.display = showSize ? '' : 'none');
-  document.querySelectorAll('.col-fscore-data, .th-fscore').forEach(el =>
-    el.style.display = showFscore ? '' : 'none');
-
   const maxScore = Math.max(...stocks.map(s => s.compound_score));
   const minScore = Math.min(...stocks.map(s => s.compound_score));
   const tbody = document.getElementById('mom-tbody');
   tbody.innerHTML = '';
 
-  let visibleRank = 0;
-
-  stocks.forEach((s) => {
-    // Apply client-side filters
-    if (showSize && minCap > 0) {
-      if (s.market_cap_msek == null || s.market_cap_msek < minCap) return;
-    }
-    if (showFscore && minFscore > 0) {
-      if (s.fscore == null || s.fscore < minFscore) return;
-    }
-
-    visibleRank++;
-    const rank = visibleRank;
-    const barPct = maxScore > minScore
+  stocks.forEach((s, i) => {
+    const rank    = i + 1;
+    const barPct  = maxScore > minScore
       ? ((s.compound_score - minScore) / (maxScore - minScore)) * 100
       : 80;
 
-    // Rank change
     let prevHTML = '';
     if (s.prev_rank === null || s.prev_rank === undefined) {
       prevHTML = '<span class="rank-change rank-new">NEW</span>';
     } else {
       const diff = s.prev_rank - s.rank;
-      if (diff > 0)       prevHTML = `<span class="rank-change rank-up">▲ ${diff} &nbsp;#${s.prev_rank}</span>`;
-      else if (diff < 0)  prevHTML = `<span class="rank-change rank-down">▼ ${Math.abs(diff)} &nbsp;#${s.prev_rank}</span>`;
-      else                prevHTML = `<span class="rank-change rank-same">— &nbsp;#${s.prev_rank}</span>`;
+      if (diff > 0)      prevHTML = `<span class="rank-change rank-up">▲ ${diff} &nbsp;#${s.prev_rank}</span>`;
+      else if (diff < 0) prevHTML = `<span class="rank-change rank-down">▼ ${Math.abs(diff)} &nbsp;#${s.prev_rank}</span>`;
+      else               prevHTML = `<span class="rank-change rank-same">— &nbsp;#${s.prev_rank}</span>`;
     }
 
     const ticker        = s.ticker.replace('.ST', '');
     const compoundClass = s.compound_score >= 0 ? 'pos-compound' : 'neg-compound';
-
-    // Market cap cell
-    const capCell = buildCapCell(s.market_cap_msek);
-
-    // F-Score cell
-    const fscoreCell = buildFscoreCell(s.fscore);
+    const capCell       = buildCapCell(s.market_cap_msek);
+    const fscoreCell    = buildFscoreCell(s.fscore);
 
     const tr = document.createElement('tr');
-    if (rank === 1) tr.style.setProperty('--rank-color', 'var(--accent)');
+    tr.dataset.rank   = rank;
+    tr.dataset.fscore = s.fscore != null ? s.fscore : '';
+    tr.dataset.mcap   = s.market_cap_msek != null ? s.market_cap_msek : '';
 
     tr.innerHTML = `
       <td><span class="rank-num">${String(rank).padStart(2, '0')}</span></td>
@@ -981,12 +959,14 @@ function renderTable(stocks) {
           </div>
         </div>
       </td>
-      <td class="right col-cap-data" style="display:${showSize ? '' : 'none'}">${capCell}</td>
-      <td class="right col-fscore-data" style="display:${showFscore ? '' : 'none'}">${fscoreCell}</td>
+      <td class="right td-mcap" style="display:none">${capCell}</td>
+      <td class="right td-fscore" style="display:none">${fscoreCell}</td>
       <td class="center">${prevHTML}</td>
     `;
     tbody.appendChild(tr);
   });
+
+  applyFilters();
 }
 
 // ─── Cap cell ────────────────────────────────────────────────────────────────
@@ -1029,10 +1009,8 @@ function toggleFScore() {
   fscoreEnabled = !fscoreEnabled;
   document.getElementById('fscore-toggle-btn').classList.toggle('active', fscoreEnabled);
   document.getElementById('fscore-info-box').classList.toggle('visible', fscoreEnabled);
-  document.getElementById('filter-dot-f').className = 'filter-status-dot' + (fscoreEnabled ? ' active-gold' : '');
-  // Show/hide F-Score column header
-  const th = document.getElementById('th-fscore');
-  if (th) th.classList.toggle('hidden', !fscoreEnabled);
+  document.getElementById('filter-dot-f').className = 'filter-status-dot' + (fscoreEnabled ? ' active-green' : '');
+  document.querySelectorAll('.th-fscore').forEach(th => th.classList.toggle('visible', fscoreEnabled));
   document.querySelectorAll('.td-fscore').forEach(td => td.classList.toggle('visible', fscoreEnabled));
   applyFilters();
 }
@@ -1043,9 +1021,7 @@ function toggleMcap() {
   document.getElementById('mcap-toggle-btn').classList.toggle('active', mcapEnabled);
   document.getElementById('mcap-info-box').classList.toggle('visible', mcapEnabled);
   document.getElementById('filter-dot-m').className = 'filter-status-dot' + (mcapEnabled ? ' active-orange' : '');
-  // Show/hide Market Cap column header
-  const th = document.getElementById('th-mcap');
-  if (th) th.classList.toggle('hidden', !mcapEnabled);
+  document.querySelectorAll('.th-cap').forEach(th => th.classList.toggle('visible', mcapEnabled));
   document.querySelectorAll('.td-mcap').forEach(td => td.classList.toggle('visible', mcapEnabled));
 
   if (mcapEnabled && RAW_DATA) {
@@ -1086,8 +1062,8 @@ function setMcapThreshold(val) {
 
 // ─── Apply all filters ────────────────────────────────────────────────────────
 function applyFilters() {
-  const rows  = Array.from(document.querySelectorAll('#stock-tbody tr[data-rank]'));
-  const tbody = document.getElementById('stock-tbody');
+  const rows  = Array.from(document.querySelectorAll('#mom-tbody tr[data-rank]'));
+  const tbody = document.getElementById('mom-tbody');
   const pass  = [], fail = [];
 
   rows.forEach(row => {
@@ -1121,7 +1097,7 @@ function applyFilters() {
     if (fscoreEnabled) parts.push(`F ≥ ${fscoreThreshold}`);
     if (mcapEnabled)   parts.push(`MCap ≥ ${mcapThreshold >= 1000 ? (mcapThreshold/1000)+'B' : mcapThreshold+'M'} SEK`);
     label.textContent = `Showing ${showing} of ${total} stocks (${parts.join(', ')})`;
-    label.className = 'filter-count' + (fscoreEnabled && mcapEnabled ? ' filtered-both' : fscoreEnabled ? ' filtered-gold' : ' filtered-orange');
+    label.className = 'filter-count' + (fscoreEnabled && mcapEnabled ? ' filtered-both' : fscoreEnabled ? ' filtered-green' : ' filtered-orange');
   }
 }
 
