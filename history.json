@@ -223,5 +223,230 @@
         "price": 49.82
       }
     ]
+  },
+  {
+    "date": "2026-03-04",
+    "stocks": [
+      {
+        "ticker": "VBK.DE",
+        "name": "Verbio",
+        "rank": 1,
+        "composite": 96.79,
+        "rsl": 1.438,
+        "mom_12m": 179.11,
+        "mom_6m": 117.86,
+        "mom_3m": 65.03,
+        "price": 25.82
+      },
+      {
+        "ticker": "SZG.DE",
+        "name": "Salzgitter",
+        "rank": 2,
+        "composite": 95.89,
+        "rsl": 1.374,
+        "mom_12m": 172.59,
+        "mom_6m": 116.12,
+        "mom_3m": 66.39,
+        "price": 50.0
+      },
+      {
+        "ticker": "ENR.DE",
+        "name": "Siemens Energy",
+        "rank": 3,
+        "composite": 91.79,
+        "rsl": 1.312,
+        "mom_12m": 186.22,
+        "mom_6m": 56.34,
+        "mom_3m": 45.99,
+        "price": 155.4
+      },
+      {
+        "ticker": "HOT.DE",
+        "name": "Hochtief",
+        "rank": 4,
+        "composite": 91.7,
+        "rsl": 1.2942,
+        "mom_12m": 172.4,
+        "mom_6m": 90.61,
+        "mom_3m": 44.43,
+        "price": 391.0
+      },
+      {
+        "ticker": "KCO.DE",
+        "name": "Klöckner & Co",
+        "rank": 5,
+        "composite": 91.07,
+        "rsl": 1.4818,
+        "mom_12m": 126.3,
+        "mom_6m": 78.03,
+        "mom_3m": 97.85,
+        "price": 11.0
+      },
+      {
+        "ticker": "NDA.DE",
+        "name": "Aurubis",
+        "rank": 6,
+        "composite": 90.62,
+        "rsl": 1.3005,
+        "mom_12m": 129.71,
+        "mom_6m": 93.31,
+        "mom_3m": 45.99,
+        "price": 161.1
+      },
+      {
+        "ticker": "NDX1.DE",
+        "name": "Nordex",
+        "rank": 7,
+        "composite": 90.45,
+        "rsl": 1.4758,
+        "mom_12m": 219.49,
+        "mom_6m": 57.16,
+        "mom_3m": 33.49,
+        "price": 40.84
+      },
+      {
+        "ticker": "BAYN.DE",
+        "name": "Bayer",
+        "rank": 8,
+        "composite": 88.84,
+        "rsl": 1.1263,
+        "mom_12m": 114.36,
+        "mom_6m": 64.65,
+        "mom_3m": 68.48,
+        "price": 38.31
+      },
+      {
+        "ticker": "DEZ.DE",
+        "name": "Deutz",
+        "rank": 9,
+        "composite": 84.46,
+        "rsl": 1.1808,
+        "mom_12m": 158.1,
+        "mom_6m": 54.51,
+        "mom_3m": 33.1,
+        "price": 11.12
+      },
+      {
+        "ticker": "GBF.DE",
+        "name": "Bilfinger",
+        "rank": 10,
+        "composite": 80.36,
+        "rsl": 1.0583,
+        "mom_12m": 161.95,
+        "mom_6m": 33.91,
+        "mom_3m": 28.8,
+        "price": 110.4
+      },
+      {
+        "ticker": "1U1.DE",
+        "name": "1&1",
+        "rank": 11,
+        "composite": 78.48,
+        "rsl": 1.0623,
+        "mom_12m": 129.33,
+        "mom_6m": 47.3,
+        "mom_3m": 25.0,
+        "price": 24.3
+      },
+      {
+        "ticker": "RWE.DE",
+        "name": "RWE",
+        "rank": 12,
+        "composite": 78.04,
+        "rsl": 1.2003,
+        "mom_12m": 89.4,
+        "mom_6m": 50.37,
+        "mom_3m": 26.52,
+        "price": 53.2
+      },
+      {
+        "ticker": "INH.DE",
+        "name": "Indus Holding",
+        "rank": 13,
+        "composite": 76.52,
+        "rsl": 1.1289,
+        "mom_12m": 66.29,
+        "mom_6m": 40.31,
+        "mom_3m": 43.43,
+        "price": 29.6
+      },
+      {
+        "ticker": "AIXA.DE",
+        "name": "Aixtron",
+        "rank": 14,
+        "composite": 75.36,
+        "rsl": 1.6651,
+        "mom_12m": 49.0,
+        "mom_6m": 41.22,
+        "mom_3m": 47.86,
+        "price": 28.87
+      },
+      {
+        "ticker": "ELG.DE",
+        "name": "Elmos Semiconductor",
+        "rank": 15,
+        "composite": 71.79,
+        "rsl": 1.4984,
+        "mom_12m": 63.93,
+        "mom_6m": 29.69,
+        "mom_3m": 36.53,
+        "price": 145.2
+      },
+      {
+        "ticker": "SMHN.DE",
+        "name": "Süss Microtec",
+        "rank": 16,
+        "composite": 68.21,
+        "rsl": 1.4124,
+        "mom_12m": 12.25,
+        "mom_6m": 51.78,
+        "mom_3m": 70.64,
+        "price": 53.4
+      },
+      {
+        "ticker": "JEN.DE",
+        "name": "Jenoptik",
+        "rank": 17,
+        "composite": 66.43,
+        "rsl": 1.2781,
+        "mom_12m": 28.86,
+        "mom_6m": 45.96,
+        "mom_3m": 36.36,
+        "price": 26.38
+      },
+      {
+        "ticker": "DRW3.DE",
+        "name": "Drägerwerk",
+        "rank": 18,
+        "composite": 65.8,
+        "rsl": 1.1758,
+        "mom_12m": 63.75,
+        "mom_6m": 31.02,
+        "mom_3m": 19.38,
+        "price": 87.1
+      },
+      {
+        "ticker": "JST.DE",
+        "name": "Jost Werke",
+        "rank": 19,
+        "composite": 60.8,
+        "rsl": 1.1347,
+        "mom_12m": 35.65,
+        "mom_6m": 30.43,
+        "mom_3m": 24.85,
+        "price": 62.2
+      },
+      {
+        "ticker": "DHL.DE",
+        "name": "Deutsche Post",
+        "rank": 20,
+        "composite": 60.27,
+        "rsl": 1.0699,
+        "mom_12m": 47.84,
+        "mom_6m": 23.47,
+        "mom_3m": 21.76,
+        "price": 46.75
+      }
+    ]
   }
 ]
